@@ -28,9 +28,9 @@ ROOT := $(TOP)
 
 TOOLCHAIN_PREFIX ?=
 
-ifeq ($(TOOLCHAIN_PREFIX),)
-$(error Toolchain prefix missing)
-endif
+#ifeq ($(TOOLCHAIN_PREFIX),)
+#$(error Toolchain prefix missing)
+#endif
 
 MODULE := nvdla_runtime
 
