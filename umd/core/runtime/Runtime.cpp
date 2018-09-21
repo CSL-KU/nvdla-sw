@@ -165,7 +165,7 @@ bool Runtime::initEMU(void)
         // We should have the ability to timeout here
         while (!m_emu_engine->ping())
         {
-            NvDlaSleepMS(200);
+            //NvDlaSleepMS(200);
         }
     }
     else
@@ -616,7 +616,7 @@ NvDlaError Runtime::submitInternal()
 
     // Force reload dependency graph contents from the loadable to
     // satisfy firmware requirements
-    for ( size_t mi = 0, MI = m_memory_entries.size(); mi != MI; ++mi )
+/*    for ( size_t mi = 0, MI = m_memory_entries.size(); mi != MI; ++mi )
     {
         Memory* memory = &m_memory[mi];
 
@@ -631,6 +631,9 @@ NvDlaError Runtime::submitInternal()
             }
         }
     }
+*/
+
+    PROPAGATE_ERROR_FAIL( loadMemory(m_loaded, &m_memory[3]) );
 
     num_emu_instances = 1;
 

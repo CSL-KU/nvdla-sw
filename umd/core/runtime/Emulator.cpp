@@ -154,10 +154,10 @@ bool Emulator::run()
             break;
         }
 
-        if (m_taskQueue.empty())
+        /*if (m_taskQueue.empty())
         {
             NvDlaSleepMS(500);
-        }
+        }*/
     }
 
     // Cleanup
