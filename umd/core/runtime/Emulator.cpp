@@ -108,7 +108,7 @@ bool Emulator::run()
 {
     bool ok = true;
     m_threadActive = true;
-
+/*
     EMUInterface* emu_if = new EMUInterfaceA();
 
     NvDlaDebugPrintf("Emulator starting\n");
@@ -154,10 +154,10 @@ bool Emulator::run()
             break;
         }
 
-        /*if (m_taskQueue.empty())
+        if (m_taskQueue.empty())
         {
             NvDlaSleepMS(500);
-        }*/
+        }
     }
 
     // Cleanup
@@ -167,6 +167,7 @@ bool Emulator::run()
     }
 
     delete emu_if;
+*/
     m_threadActive = false;
     m_signalShutdown = false;
 

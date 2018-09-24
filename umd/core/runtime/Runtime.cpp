@@ -163,10 +163,10 @@ bool Runtime::initEMU(void)
 
         // Wait for emulator engine to warm up
         // We should have the ability to timeout here
-        while (!m_emu_engine->ping())
+        /*while (!m_emu_engine->ping())
         {
-            //NvDlaSleepMS(200);
-        }
+            NvDlaSleepMS(200);
+        }*/
     }
     else
     {
