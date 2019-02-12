@@ -41,6 +41,7 @@
 
 #include <cstdio> // snprintf, fopen
 #include <string>
+#include <sys/time.h>
 
 #define OUTPUT_DIMG "output.dimg"
 
@@ -362,6 +363,8 @@ NvDlaError runTest(const TestAppArgs* appArgs, TestInfo* i)
     NvDlaError e = NvDlaSuccess;
     void* pInputBuffer = NULL;
     void* pOutputBuffer = NULL;
+    struct timeval t1, t2;
+    double elapsedTime;
 
     nvdla::IRuntime* runtime = i->runtime;
     if (!runtime)
@@ -374,8 +377,15 @@ NvDlaError runTest(const TestAppArgs* appArgs, TestInfo* i)
 
     PROPAGATE_ERROR_FAIL(setupOutputBuffer(appArgs, i, &pOutputBuffer));
     NvDlaDebugPrintf("submitting tasks...\n");
+
+    gettimeofday(&t1, NULL);
     if (!runtime->submit())
         ORIGINATE_ERROR(NvDlaError_BadParameter, "runtime->submit() failed");
+
+    gettimeofday(&t2, NULL);
+    elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;
+    elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;
+    NvDlaDebugPrintf("Elapsed time: %f\n", elapsedTime);
 
     PROPAGATE_ERROR_FAIL(DlaBuffer2DIMG(&pOutputBuffer, i->outputImage));
 
